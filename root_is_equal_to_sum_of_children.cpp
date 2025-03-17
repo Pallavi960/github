@@ -44,12 +44,6 @@ bool check(Node* root)
 
 }
 
-
-
-
-
-
-
 int main()
 {
     struct Node *root=new Node(2);
