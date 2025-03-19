@@ -17,25 +17,24 @@ struct Node{
 //---using level order Traverser-----
 int Level_order_Traversal(Node* root)
 {
+    int hight=0;
     vector<vector<int>>ans;
-    if(root==NULL)return 0;
+    if(root==NULL)return hight;
     queue<Node*>q;
     q.push(root);
     while(!q.empty())
     {
+        hight++;
         int n=q.size();
-        vector<int>dummy;
         for(int i=0;i<n;i++)
         {
             Node* temp=q.front();
             q.pop();
-            dummy.push_back(temp->data);
             if(temp->left!=NULL)q.push(temp->left);
             if(temp->right!=NULL)q.push(temp->right);
         }
-         ans.push_back(dummy);
     }
-    return ans.size();
+    return hight;
 }
 
 //----using recursion-------
