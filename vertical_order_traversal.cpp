@@ -16,10 +16,12 @@ struct Node{
     }
 };
 
+//in the vertical order traverrsal we need to give ans in such a way that it is sorted accordind to colum wise and as level wise also
+//mutimap can store multiple values for multiple key inseted of multimap we can use multiset
 vector<vector<int>> vertical_traversal(Node* root)
 {
    vector<vector<int>>ans;
-   map<int,multimap<int,int>>mpp;
+   map<int,multimap<int,int>>mpp;//here colum,level and it member
    if(root==NULL)return ans;
    queue<pair<Node*,pair<int,int>>>q;
    q.push({root,{0,0}});
@@ -29,24 +31,27 @@ vector<vector<int>> vertical_traversal(Node* root)
        for(int i=0;i<n;i++)
        {
            Node* temp=q.front().first;
+
            int colum=q.front().second.first;
            int level=q.front().second.second;
+
            if(temp->left!=NULL)q.push({temp->left,{colum-1,level+1}});
            if(temp->right!=NULL)q.push({temp->right,{colum+1,level+1}});
-           mpp[colum].insert({level,temp->data});
+
+           mpp[colum].insert({level,temp->data});//insert the data in map
            q.pop();
        }
    }
    vector<int>dummy;
 
-   for(auto it:mpp)
+   for(auto it:mpp)//first
    {
       vector<int>dummy;
-      for(auto p:it.second)
+      for(auto p:it.second)//take vector of the second
       {
           dummy.push_back(p.second);
       }
-      ans.push_back(dummy);
+      ans.push_back(dummy);//addind vector in vector
    }
   return ans;
 
