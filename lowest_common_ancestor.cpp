@@ -32,7 +32,7 @@ Node* find_lca(Node* root,Node* a,Node* b)//function for LCA
         return left_LCA;
     }
     else{
-        return NULL;//no one valid
+        return right_LCA;//no one valid
     }
 
 }
